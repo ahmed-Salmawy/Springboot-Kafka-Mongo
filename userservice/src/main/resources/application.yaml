@@ -1,0 +1,29 @@
+spring :
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: User Registration Service
+  data :
+    mongodb:
+      host: localhost
+      port: 27017
+      database: user-reg
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            driver: DEBUG
+            core:
+              MongoTemplate: DEBUG
