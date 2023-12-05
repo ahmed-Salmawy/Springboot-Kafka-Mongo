@@ -8,9 +8,8 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document("userEntity")
+@Document("users")
 @Data
-
 public class UserEntity extends AbstractBaseEntity {
     @Transient
     public static final String SEQUENCE_NAME = "users_sequence";
@@ -19,4 +18,9 @@ public class UserEntity extends AbstractBaseEntity {
     private String name ;
     private String email;
     private String mobileNumber;
+
+    @Override
+    public String getSequenceName() {
+        return SEQUENCE_NAME;
+    }
 }

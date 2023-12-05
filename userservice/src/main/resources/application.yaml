@@ -6,9 +6,8 @@ spring :
     name: User Registration Service
   data :
     mongodb:
-      host: localhost
-      port: 27017
-      database: user-reg
+      uri: mongodb+srv://myAtlasDBUser:Tw26FBfrN3cqIq5X@myatlasclusteredu.igregay.mongodb.net/sample_training?retryWrites=true&w=majority
+      database: sample_training
 server:
   port: 8080
 
@@ -27,3 +26,5 @@ logging:
             driver: DEBUG
             core:
               MongoTemplate: DEBUG
+
+

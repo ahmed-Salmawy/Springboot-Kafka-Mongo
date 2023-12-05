@@ -14,6 +14,10 @@ public abstract class AbstractBaseEntity implements Serializable {
     private String updatedBy;
     private String createdBy;
 
+    public abstract void setId(long id );
+    public abstract long getId();
+    public abstract String getSequenceName();
+
 
 
 
