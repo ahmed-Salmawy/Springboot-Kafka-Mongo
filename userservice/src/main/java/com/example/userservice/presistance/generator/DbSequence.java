@@ -4,9 +4,9 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("database_sequences")
+@Document("db_sequences")
 @Data
-public class DatabaseSequence {
+public class DbSequence {
     @Id
     private String id;
     private long seq;
