@@ -1,6 +1,7 @@
 package com.example.userservice.aspect.notification;
 
 import com.example.userservice.domain.dto.UserDto;
+import com.example.userservice.domain.service.UserNotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -17,11 +18,11 @@ import java.util.Optional;
 @Aspect
 @Slf4j
 public class UserRegNotifyAspect {
-    private final KafkaTemplate<String, UserDto> kafkaTemplate;
+    private final UserNotificationService userNotificationService;
 
     @Autowired
-    public UserRegNotifyAspect(KafkaTemplate<String, UserDto> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
+    public UserRegNotifyAspect(UserNotificationService userNotificationService) {
+        this.userNotificationService = userNotificationService;
     }
 
 
@@ -30,12 +31,9 @@ public class UserRegNotifyAspect {
         UserDto userDto = null;
         try {
             userDto = (UserDto) joinPoint.getArgs()[0];
-            Optional.ofNullable(userDto).ifPresent(kafkaTemplate::sendDefault);
-            log.info("user notification sent successfully ");
+            userNotificationService.sendWelcomeNotification(userDto);
         } catch (Exception ex) {
             log.error("unable to cast first argument to UserDto.class");
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
         }
 
 
