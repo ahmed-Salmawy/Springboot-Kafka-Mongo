@@ -1,5 +1,6 @@
 package com.example.userservice.domain.service.impl;
 
+import com.example.userservice.aspect.notification.UserRegNotify;
 import com.example.userservice.base.AbstractBaseService;
 import com.example.userservice.domain.dto.UserDto;
 import com.example.userservice.domain.repoadapter.UserRegistrationRepoAdapter;
@@ -14,6 +15,7 @@ class UserRegistrationServiceImpl
     }
 
     @Override
+    @UserRegNotify
     public long createUser(UserDto user) {
         return repoAdapter.create(user);
     }

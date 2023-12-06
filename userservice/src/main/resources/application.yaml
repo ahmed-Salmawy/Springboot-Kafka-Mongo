@@ -1,4 +1,11 @@
 spring :
+  kafka:
+    bootstrap-servers: localhost:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    template:
+      default-topic: user-reg-topic
   cloud:
     config:
       enabled: false
@@ -16,7 +23,6 @@ eureka:
     service-url:
       default-zone: http://localhost:8761/eureka/
 
-
 logging:
   level:
     org:
@@ -26,5 +32,3 @@ logging:
             driver: DEBUG
             core:
               MongoTemplate: DEBUG
-
-
